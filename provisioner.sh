@@ -61,7 +61,7 @@ curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorizatio
 	"description": "All in one Demo Server",
 	"cassandraConnectionInfo": {
 		"clusterName": "Test Cluster",
-		"contactPoints": "172.16.238.5:9042",
+		"contactPoints": "cassandra.service:9042",
 		"keyspace": "playground",
 		"replicationType": "Simple",
 		"replicas": "3"
@@ -69,7 +69,7 @@ curl -H "Content-Type: application/json" -H "User: wepemnefret" -H "Authorizatio
 	"databaseConnectionInfo": {
 		"driverClass": "org.mariadb.jdbc.Driver",
 		"databaseName": "playground",
-		"host": "172.16.238.4",
+		"host": "mariadb.service",
 		"port": "3306",
 		"user": "root",
 		"password": "mysql"

@@ -2,7 +2,7 @@
 
 cd external-tools/
 docker-compose up -d
-while ! nc -z 172.16.238.5 9042; do
+while ! nc -z 127.0.0.1 9042; do
   echo "Cassandra is unavailable - sleeping"
   sleep 1
 done
