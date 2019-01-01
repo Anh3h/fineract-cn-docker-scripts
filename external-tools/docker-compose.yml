@@ -11,12 +11,14 @@ services:
       ACTIVEMQ_CONFIG_MINMEMORY: 512
       ACTIVEMQ_CONFIG_MAXMEMORY: 1024
     healthcheck:
-      test: curl -u admin:admin -s http://172.16.238.3:8161/admin
+      test: curl -u admin:admin -s http://activemq.service:8161/admin
       interval: 5s
       retries: 20
     networks:
       app_net:
-        ipv4_address: 172.16.238.3
+        #ipv4_address: 172.16.238.3
+        aliases:
+          - activemq.service
 
   eureka:
     build: ../eureka_server
@@ -25,7 +27,9 @@ services:
       - "8761:8761"
     networks:
       app_net:
-        ipv4_address: 172.16.238.2
+        #ipv4_address: 172.16.238.2
+        aliases:
+          - eureka.service
 
   mariadb:
     image: mariadb
@@ -37,25 +41,29 @@ services:
     volumes:
       - mariadb-volume:/var/lib/mysql
     healthcheck:
-      test: mysql --user=root --password=mysql -h 172.16.238.4
+      test: mysql --user=root --password=mysql -h mariadb.service
       interval: 5s
       retries: 20
     networks:
       app_net:
-        ipv4_address: 172.16.238.4
+        #ipv4_address: 172.16.238.4
+        aliases:
+          - mariadb.service
 
   cassandra:
     image: cassandra
     container_name: cassandra
     ports:
-      - "9142:9042"
+      - "9042:9042"
     healthcheck:
-      test: cqlsh ping -h 172.16.238.5
+      test: cqlsh ping -h cassandra.service
       interval: 5s
       retries: 20
     networks:
       app_net:
-        ipv4_address: 172.16.238.5
+        #ipv4_address: 172.16.238.5
+        aliases:
+          - cassandra.service
     volumes:
       - cassandra-volume:/var/lib/cassandra
 

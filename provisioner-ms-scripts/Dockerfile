@@ -1,9 +1,9 @@
 FROM openjdk:8-jdk-alpine
 
 ARG provisioner_port=2020
-ARG cassandraIp=172.16.238.5
-ARG activemqIp=172.16.238.3
-ARG eurekaIp=172.16.238.2
+ARG cassandraIp=cassandra.service
+ARG activemqIp=activemq.service
+ARG eurekaIp=eureka.service
 
 ENV server.max-http-header-size=16384 \
     bonecp.partitionCount=1 \
@@ -19,7 +19,7 @@ ENV server.max-http-header-size=16384 \
     cassandra.cl.delete=ONE \
     mariadb.driverClass=org.mariadb.jdbc.Driver \
     mariadb.database=seshat \
-    mariadb.host=172.16.238.4 \
+    mariadb.host=mariadb.service \
     mariadb.port=3306 \
     mariadb.user=root \
     mariadb.password=mysql \
