@@ -145,4 +145,4 @@ services:
 
 networks:
   app_net:
-   driver: bridge
+    driver: bridge
